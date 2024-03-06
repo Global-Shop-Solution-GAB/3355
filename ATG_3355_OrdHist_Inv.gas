@@ -1,0 +1,427 @@
+Program.Sub.ScreenSU.Start
+gui.F_InvoiceOptns..create
+gui.F_InvoiceOptns..caption("Invoice Options")
+gui.F_InvoiceOptns..size(6120,4920)
+gui.F_InvoiceOptns..position(0,0)
+gui.F_InvoiceOptns..event(unload,Unload)
+gui.F_InvoiceOptns..alwaysontop(False)
+gui.F_InvoiceOptns..fontname("Arial")
+gui.F_InvoiceOptns..fontsize(8)
+gui.F_InvoiceOptns..forecolor(0)
+gui.F_InvoiceOptns..fontstyle(,,,,)
+gui.F_InvoiceOptns..BackColor(-2147483633)
+gui.F_InvoiceOptns..controlbox(True)
+gui.F_InvoiceOptns..maxbutton(False)
+gui.F_InvoiceOptns..minbutton(True)
+gui.F_InvoiceOptns..mousepointer(0)
+gui.F_InvoiceOptns..moveable(True)
+gui.F_InvoiceOptns..sizeable(False)
+gui.F_InvoiceOptns..ShowInTaskBar(True)
+gui.F_InvoiceOptns..titlebar(True)
+gui.F_InvoiceOptns.frmOptns.create(frame)
+gui.F_InvoiceOptns.frmOptns.caption("Frame")
+gui.F_InvoiceOptns.frmOptns.size(5610,3615)
+gui.F_InvoiceOptns.frmOptns.position(200,200)
+gui.F_InvoiceOptns.frmOptns.visible(True)
+gui.F_InvoiceOptns.frmOptns.borderstyle(0)
+gui.F_InvoiceOptns.frmOptns.fontname("Arial")
+gui.F_InvoiceOptns.frmOptns.fontsize(8)
+gui.F_InvoiceOptns.frmCmd.create(frame)
+gui.F_InvoiceOptns.frmCmd.caption("Frame")
+gui.F_InvoiceOptns.frmCmd.size(1140,375)
+gui.F_InvoiceOptns.frmCmd.position(200,3900)
+gui.F_InvoiceOptns.frmCmd.visible(True)
+gui.F_InvoiceOptns.frmCmd.borderstyle(0)
+gui.F_InvoiceOptns.frmCmd.fontname("Arial")
+gui.F_InvoiceOptns.frmCmd.fontsize(8)
+gui.F_InvoiceOptns.frmEmail.create(frame)
+gui.F_InvoiceOptns.frmEmail.caption("Frame")
+gui.F_InvoiceOptns.frmEmail.parent("frmoptns")
+gui.F_InvoiceOptns.frmEmail.size(5565,400)
+gui.F_InvoiceOptns.frmEmail.position(0,600)
+gui.F_InvoiceOptns.frmEmail.visible(True)
+gui.F_InvoiceOptns.frmEmail.borderstyle(0)
+gui.F_InvoiceOptns.frmEmail.fontname("Arial")
+gui.F_InvoiceOptns.frmEmail.fontsize(8)
+gui.F_InvoiceOptns.lblInv.create(label,"Invoice Delivery",True,1245,255,1,0,0,True,0,Arial,8,-2147483633,0)
+gui.F_InvoiceOptns.lblInv.parent("frmoptns")
+gui.F_InvoiceOptns.dlstOptns.create(dropdownlist)
+gui.F_InvoiceOptns.dlstOptns.visible(True)
+gui.F_InvoiceOptns.dlstOptns.size(1335,330)
+gui.F_InvoiceOptns.dlstOptns.zorder(0)
+gui.F_InvoiceOptns.dlstOptns.position(0,200)
+gui.F_InvoiceOptns.dlstOptns.enabled(True)
+gui.F_InvoiceOptns.dlstOptns.parent("frmoptns")
+gui.F_InvoiceOptns.dlstOptns.fontname("Arial")
+gui.F_InvoiceOptns.dlstOptns.fontsize(8)
+gui.F_InvoiceOptns.dlstOptns.event(click,dlstoptns_click)
+gui.F_InvoiceOptns.mltxtEmail.create(textboxm)
+gui.F_InvoiceOptns.mltxtEmail.text("")
+gui.F_InvoiceOptns.mltxtEmail.visible(True)
+gui.F_InvoiceOptns.mltxtEmail.size(5535,2610)
+gui.F_InvoiceOptns.mltxtEmail.zorder(0)
+gui.F_InvoiceOptns.mltxtEmail.position(0,1000)
+gui.F_InvoiceOptns.mltxtEmail.enabled(True)
+gui.F_InvoiceOptns.mltxtEmail.alignment(0)
+gui.F_InvoiceOptns.mltxtEmail.parent("frmoptns")
+gui.F_InvoiceOptns.mltxtEmail.fontname("Arial")
+gui.F_InvoiceOptns.mltxtEmail.fontsize(8)
+gui.F_InvoiceOptns.mltxtEmail.BackColor(-2147483643)
+gui.F_InvoiceOptns.cmdSend.create(button)
+gui.F_InvoiceOptns.cmdSend.caption("Send")
+gui.F_InvoiceOptns.cmdSend.visible(True)
+gui.F_InvoiceOptns.cmdSend.size(945,360)
+gui.F_InvoiceOptns.cmdSend.zorder(0)
+gui.F_InvoiceOptns.cmdSend.position(0,0)
+gui.F_InvoiceOptns.cmdSend.enabled(True)
+gui.F_InvoiceOptns.cmdSend.parent("frmcmd")
+gui.F_InvoiceOptns.cmdSend.fontname("Arial")
+gui.F_InvoiceOptns.cmdSend.fontsize(8)
+gui.F_InvoiceOptns.cmdSend.event(click,cmdsend_click)
+gui.F_InvoiceOptns.lblEmail1.create(label,"Please enter Invoicing contacts",True,2400,255,1,0,0,True,0,Arial,8,-2147483633,0)
+gui.F_InvoiceOptns.lblEmail1.parent("frmemail")
+gui.F_InvoiceOptns.lblEmail2.create(label,"(e.g., emailaddress1@companyname.com,",True,3075,255,1,2350,0,True,0,Arial,8,-2147483633,0)
+gui.F_InvoiceOptns.lblEmail2.parent("frmemail")
+gui.F_InvoiceOptns.lblEmail3.create(label,"emailaddress2@companyname.com)",True,3075,255,1,0,200,True,0,Arial,8,-2147483633,0)
+gui.F_InvoiceOptns.lblEmail3.parent("frmemail")
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+
+Variable.Global.iRowSelected.Declare(Long,-1)
+Variable.Global.sInvoiceNum.Declare(String)
+Variable.Global.sOrderNo.Declare(String)
+Variable.Global.sCustomer.Declare(String)
+Variable.Global.sPO.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Quote Number: 3604
+'Revision Number: 1
+'Customer Name: RBT Services, Inc.
+'Title: Print and Email Invoices from Order History Screen
+
+'Description:  From Order Entry-> View-> Orders & History, users need the ability to highlight a particular line and either print or print and email an invoice. Once a line is hightlighted and they click a gab script 1 button, popup a box with check boxes for print or email and allow for both.
+
+'Specification: A GAB script will run off the Script 1 button hook (33002). It will allow for the user to select print and/or email. If they select email, an email address must be entered.
+
+'Read the BDF (AUX001) and get the invoice number from the BDF using the GRID-ORDER-ROW-SEL passed data.Use callwrappersyncbio 200900, passing the Invoice number and crystal override. Use the custom e-invoice.rpt to Save and or Print the report.
+
+'If the email option is checked and an email address is entered, save the pdf in the Plugins directory and use f.global.messaging.queuemessage to email the invoice.
+
+'Muliple email addresses can be entered, separated by commas.
+
+'CK5- 01/02/13 Body & subject will be populated similar to the E-invoicing from eInvoicing_Body_Text.txt.
+
+
+'Populate Hook, change the text on Script1 button
+F.Intrinsic.Control.If(V.Caller.Hook,=,33001)
+	V.Passed.000153.set("Process Inv")
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.ElseIf(V.Caller.Hook,=,33002)
+	'If no Order is selected
+	F.Intrinsic.Control.If(V.Passed.000002,=,"0")
+		F.Intrinsic.UI.Msgbox("Select an Existing Order","Invoice Options")
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+	V.Global.iRowSelected.Set(V.Passed.GRID-ORDER-ROW-SEL)
+	F.Intrinsic.Control.If(V.Global.iRowSelected,<,1)
+		F.Intrinsic.UI.Msgbox("Select an Order-Line","Invoice Options")
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+'Get Order Num & PO Num
+F.Intrinsic.String.LPad(V.Passed.000002,"0",7,V.Global.sOrderNo)
+V.Global.sPO.Set(V.Passed.000008)
+'Get Inv Num
+F.Intrinsic.Control.CallSub(Get_invnum)
+'Populate Drop-down
+Gui.F_InvoiceOptns.dlstOptns.AddItem("Print",0)
+Gui.F_InvoiceOptns.dlstOptns.AddItem("Email",1)
+Gui.F_InvoiceOptns.dlstOptns.AddItem("Both",2)
+'Disable Email Options
+Gui.F_InvoiceOptns.lblEmail1.Enabled(false)
+Gui.F_InvoiceOptns.lblEmail2.Enabled(false)
+Gui.F_InvoiceOptns.lblEmail3.Enabled(false)
+Gui.F_InvoiceOptns.mltxtEmail.Enabled(false)
+'Display form
+Gui.F_InvoiceOptns..Show
+
+Program.Sub.Main.End
+
+program.sub.Unload.start
+F.ODBC.Connection!Con.Close
+F.Intrinsic.Control.End
+
+program.sub.Unload.end
+
+program.sub.cmdsend_click.start
+V.Local.bExists.Declare
+V.Local.iRptID.Declare
+V.Local.iUserID.Declare
+V.Local.sAttach.Declare
+V.Local.sBody.Declare
+V.Local.sCallParams.Declare
+V.Local.sDirectory.Declare
+V.Local.sError.Declare(String)
+V.Local.sFile.Declare
+V.Local.sReportID.Declare
+V.Local.sSender.Declare
+V.Local.sSenderEmail.Declare
+V.Local.sSql.Declare
+V.Local.sSubject.Declare
+V.Local.sParameters.Declare
+V.Local.sInvRepLoc.Declare
+V.Local.sRecipient.Declare
+V.Local.sValues.Declare
+V.Local.sRequiredParams.Declare(String)
+V.Local.sRetFile.Declare(String)
+V.Local.iBIRUNID.Declare(Long)
+V.Local.iLOGID.Declare(Long)
+V.Local.bFile.Declare(Boolean)
+V.Local.iID.Declare(Long)
+V.Local.sDir.Declare(String)
+V.Local.sFile.Declare(String)
+
+F.Intrinsic.Control.SetErrorHandler("cmdsend_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+'If no option was selected
+F.Intrinsic.Control.If(V.Screen.F_InvoiceOptns!dlstOptns.ItemData,=,"")
+	F.Intrinsic.UI.Msgbox("Select an Invoice Delivery Option","Invoice Options")
+	F.Intrinsic.Control.exitsub
+'Check Email contacts
+F.Intrinsic.Control.ElseIf(V.Screen.F_InvoiceOptns!dlstOptns.ItemData,<>,0)
+	F.Intrinsic.Control.If(V.Screen.F_InvoiceOptns!mltxtEmail.Text,=,"")
+		F.Intrinsic.UI.Msgbox("Enter Invoice Contacts","Invoice Options")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'Call GS tables to fill BI table data
+F.Intrinsic.String.Concat(V.Global.sInvoiceNum,"!*!|~|CRYSTAL-OVERRIDE|~|",V.Local.sCallParams)
+F.Global.General.CallWrapperSyncBIO(200900,V.Local.sCallParams)
+
+'Get Report ID
+F.Intrinsic.String.concat("SELECT * FROM V_PRT_LASER_INVOICE WHERE INVOICE_NO='",V.Global.sInvoiceNum,"' and Terminal_No='",V.Caller.Terminal,"'",V.Local.sSql)
+F.ODBC.Connection!Con.OpenLocalRecordsetRO("rstReportID",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.Con!rstReportID.EOF,=,False)
+	V.Local.sReportID.Set(V.ODBC.Con!rstReportID.FieldVal!RPTID)
+F.Intrinsic.Control.Else
+	F.Intrinsic.UI.Msgbox("Unable to find Invoice Data.  Please contact Global Shop.","Invoice Options")
+	F.Intrinsic.Control.CallSub(Unload)
+F.Intrinsic.Control.EndIf
+F.ODBC.Con!rstReportID.Close
+
+'Get report ID form BI_RPT
+F.Global.BI.GetIDFromName("E-Invoice.rpt",V.Local.iRptID)
+F.Intrinsic.Control.If(V.Local.iRptID,=,-1)
+	F.Intrinsic.String.Concat(V.Caller.BusintDir,"\Custom",V.Local.sDirectory)
+	F.Intrinsic.File.DirExists(V.Local.sDirectory,V.Local.bExists)
+	'Create Custom Directory, if it doesn't exist
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.File.CreateDir(V.Local.sDirectory)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.Concat(V.Local.sDirectory,"\E-Invoice.rpt",V.Local.sInvRepLoc)
+	F.Global.BI.InitializeReport("E-Invoice",V.Local.sInvRepLoc,V.Local.iRptID)
+	F.Intrinsic.Control.If(V.Local.iRptID,=,-1)
+		F.Intrinsic.UI.Msgbox("Please set up E-Invoice.rpt.  Refer to GAB Forum for more info.","Invoice Options")
+		F.Intrinsic.Control.CallSub(Unload)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.InvokeWaitDialog("Processing Invoice . . . .","Invoice Options")
+F.Intrinsic.UI.ChangeWaitStatus("Processing Invoice . . . . ",25)
+
+'Generate Parameters and Values to Print/Email Invoice.
+V.Local.sParameters.Set("REPORTID*!*TERMINAL*!*ORDERNO*!*PROGRAM*!*TRACK*!*IVCTYPE*!*PRTSHIP*!*PRTORD*!*IVCTYPE*!*PRTSHIP*!*PRTORD*!*INVOICE")
+F.Intrinsic.String.Concat(V.Local.sReportID,"*!*",V.Caller.Terminal,"*!*",V.Global.sOrderNo,"*!*",V.Caller.Caller,"*!* *!* *!* *!* *!* *!* *!* *!*",V.Global.sInvoiceNum,V.Local.sValues)
+F.Intrinsic.String.Concat(V.Global.sInvoiceNum,"-",V.Global.sOrderNo,V.Local.sSubject)
+F.Intrinsic.String.Concat(V.Caller.PluginsDir,"\",V.Local.sSubject,".pdf",V.Local.sFile)
+
+'required report params
+V.Local.sRequiredParams.Set("Terminal*!*REPORTID*!*INVOICE")
+F.Intrinsic.String.Build("{0}\Invoice_{1}",V.System.Temp,V.Caller.Terminal,V.Local.sRetFile)
+
+F.Intrinsic.UI.ChangeWaitStatus("Processing Invoice . . . . ",50)
+
+'Email Invoice
+F.Intrinsic.Control.If(V.Screen.F_InvoiceOptns!dlstOptns.ItemData,<>,0)
+	V.Local.sRecipient.Set(V.Screen.F_InvoiceOptns!mltxtEmail.Text)
+	F.Intrinsic.String.Replace(V.Local.sRecipient.Trim,",","@!@",V.Local.sRecipient)
+	F.Intrinsic.String.Replace(V.Local.sRecipient," ","",V.Local.sRecipient)
+	F.Intrinsic.UI.ChangeWaitStatus("EMailing Invoice . . . . ",65)
+	F.Global.Security.GetUserID(V.Caller.User,V.Caller.CompanyCode,V.Local.iUserID)
+	F.Global.Security.GetUserEmail(V.Caller.User,V.Caller.CompanyCode,V.Local.sSenderEmail)
+	F.Intrinsic.String.Concat(V.Local.sSenderEmail,"*!*",V.Caller.User,V.Local.sSender)
+	F.Intrinsic.String.Concat(V.Local.sSubject,".pdf*!*",V.Caller.PluginsDir,V.Local.sAttach)
+'	F.Intrinsic.String.Concat("Invoice for : ",V.Global.sCustomer,V.Local.sSubject)
+	'F.Intrinsic.String.Concat("Dear ",V.Global.sCustomer,",",V.Ambient.NewLine,"Please see the attached invoices processed on ",V.Ambient.Date.FormatMM-DD-YY,".",V.Ambient.NewLine,V.Ambient.NewLine,"Thank You!",V.Ambient.NewLine,"RBT Services, Inc.",V.Local.sBody)
+	F.Intrinsic.Control.CallSub(Process_body)
+	V.Local.sBody.Set(V.Args.sBody)
+	V.Local.sSubject.Set(V.Args.sSubject)
+	F.Intrinsic.UI.ChangeWaitStatus("EMailing Invoice . . . . ",70)
+
+	'getting run id and log id
+	F.Global.BI.GetRunID(V.Local.iBIRUNID)
+	F.Global.BI.StartLogging(V.Local.iBIRUNID,1,-1,"",V.Local.iLOGID)
+
+	F.Global.BI.RunReportPreProcessor(V.Local.iBIRUNID,V.Local.iLOGID,V.Local.sParameters,V.Local.sValues,"",4,True,"",-1,"",0,V.Local.sFile,"",V.Local.sRequiredParams,V.Local.sRetFile,V.Local.iLOGID)
+
+	F.Global.BI.StopLogging(V.Local.iLOGID)
+
+	F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bFile)
+	F.Intrinsic.Control.If(V.Local.bFile,=,False)
+		F.Intrinsic.UI.Msgbox("PDF was not created.Please contact Global Shop.")
+		F.Intrinsic.Control.CallSub(Unload)
+	F.Intrinsic.Control.EndIf
+
+	'Email Invoice
+	F.Global.Messaging.QueueMessage(V.Caller.CompanyCode,V.Local.iUserID,V.Caller.Caller,V.Local.sSubject,V.Local.sSender,V.Local.sRecipient,V.Local.sBody,-1,V.Local.sSenderEmail,False,"","","","","","","",V.Local.sAttach,True)
+F.Intrinsic.Control.endif
+
+'Print
+F.Intrinsic.Control.If(V.Screen.F_InvoiceOptns!dlstOptns.ItemData,<>,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Printing Invoice . . . . ",75)
+	'Print the Invoice
+	F.Global.BI.PrintReport(V.Local.iRptID,0,V.Local.sParameters,V.Local.sValues,False)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.ChangeWaitStatus("Processing Invoice . . . . ",100)
+F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.Control.CallSub(Unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdsend_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_OrdHist_Inv.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdsend_click.end
+
+program.sub.dlstoptns_click.start
+V.Local.bEnabled.Declare
+'Lock email options for print
+F.Intrinsic.Control.If(V.Screen.F_InvoiceOptns!dlstOptns.ItemData,=,0)
+	V.Local.bEnabled.Set(False)
+F.Intrinsic.Control.Else
+	V.Local.bEnabled.Set(True)
+F.Intrinsic.Control.EndIf
+
+Gui.F_InvoiceOptns.mltxtEmail.Enabled(V.Local.benabled)
+Gui.F_InvoiceOptns.lblEmail1.Enabled(V.Local.bEnabled)
+Gui.F_InvoiceOptns.lblEmail2.Enabled(V.Local.bEnabled)
+Gui.F_InvoiceOptns.lblEmail3.Enabled(V.Local.bEnabled)
+
+program.sub.dlstoptns_click.end
+
+Program.Sub.Get_InvNum.Start
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare
+V.Local.iRow.Declare
+V.Local.sCustomer.Declare
+V.Local.sMsg.Declare
+V.Local.sSql.Declare
+
+F.Intrinsic.Control.SetErrorHandler("Get_InvNum_Err")
+F.Intrinsic.Control.ClearErrors
+
+F.Intrinsic.BDF.Load("AUX001","AUX001")
+F.Intrinsic.Math.Sub(V.Global.iRowSelected,1,V.Local.iRow)
+F.Intrinsic.BDF.ReadRow("AUX001",V.local.iRow,V.Local.sRow)
+F.Intrinsic.String.Split(V.Local.sRow,"|~|",V.Local.sRow)
+V.Global.sInvoiceNum.Set(V.Local.sRow(5))
+'F.Intrinsic.UI.Msgbox(V.Global.sInvoiceNum)
+
+V.Local.sCustomer.Set(V.Passed.000007)
+F.Intrinsic.String.Concat("select Name_Customer from CUSTOMER_MASTER where Rec = '1' and customer='",V.Local.sCustomer,"'",V.Local.sSql)
+F.ODBC.Connection!Con.OpenLocalRecordsetRO("rstCust",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.Con!rstCust.EOF,=,False)
+	V.Global.sCustomer.Set(V.ODBC.Con!rstCust.FieldVal!Name_Customer)
+	V.Global.sCustomer.Set(V.Global.sCustomer.Trim)
+F.Intrinsic.Control.EndIf
+F.ODBC.Con!rstCust.Close
+
+'No invoice attached to the selected Order
+F.Intrinsic.Control.If(V.Global.sInvoiceNum.Trim,=,"")
+	F.Intrinsic.String.Concat("There is no Invoice attached to the selected Order-Line.",V.Ambient.NewLine,"Select a different Line.",V.Local.sMsg)
+	F.Intrinsic.UI.Msgbox(V.Local.sMsg,"Invoice Options")
+	F.Intrinsic.Control.CallSub(Unload)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_InvNum_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_OrdHist_Inv.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Get_InvNum.End
+
+Program.Sub.Process_Body.Start
+V.Local.sError.Declare(String)
+V.Local.sBody.Declare
+V.Local.sFile.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sSubject.Declare(String)
+
+F.Intrinsic.Control.SetErrorHandler("Process_Body_Err")
+F.Intrinsic.Control.ClearErrors
+
+F.Intrinsic.String.Concat(V.Caller.PluginsDir,"\GAB\GAS\eInvoicing_Body_Text.txt",V.Local.sFile)
+F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sBody)
+F.Intrinsic.Control.Else
+	V.Local.sBody.Set("Attached is your invoice.  Thank you.")
+	F.Intrinsic.String.Concat("e-Invoice ",V.Global.sInvoiceNum,V.Local.sSubject)
+	F.Intrinsic.File.String2File(V.Local.sFile,V.Local.sBody)
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sText)
+F.Intrinsic.String.Replace(V.local.sText,"%INVOICE%",V.Global.sInvoiceNum,V.Local.sText)
+F.Intrinsic.String.Replace(V.Local.sText,"%CUSTPO%",V.Global.sPO,V.Local.sText)
+F.Intrinsic.String.Replace(V.Local.sText,"%CUSTOMER%",V.Global.sCustomer,V.Local.sText)
+F.Intrinsic.String.Replace(V.Local.sText,"%COMPANY%",V.Ambient.CompanyName,V.Local.sText)
+F.Intrinsic.String.Replace(V.Local.sText,"%DATE%",V.Ambient.Now.Formatmm-dd-YYYY,V.Local.sText)
+F.Intrinsic.String.Split(V.Local.sText,"*!*",V.Local.sText)
+
+F.Intrinsic.Control.If(V.Local.sText.UBound,>,0)
+	V.Local.sSubject.Set(V.Local.sText(0))
+	V.Local.sBody.Set(V.Local.sText(1))
+F.Intrinsic.Control.Else
+	V.Local.sBody.Set(V.Local.sText)
+	F.Intrinsic.String.Concat("e-Invoice ",V.Global.sInvoiceNum,V.Local.sSubject)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("sBody",V.Local.sBody)
+F.Intrinsic.Variable.AddRV("sSubject",V.Local.sSubject)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Process_Body_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_OrdHist_Inv.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Process_Body.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_OrdHist_Inv.$}$CHANDANA$}$7/25/2012
+Program.Sub.Comments.End
+
